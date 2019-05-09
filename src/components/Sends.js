@@ -1,9 +1,16 @@
 import React, { Component } from "react";
+import { useSample } from "../contexts/sample";
 
 class Sends extends Component {
   state = {
     input: ""
   };
+
+  componentDidMount() {
+    this.setState({
+      input: this.props.value
+    });
+  }
 
   handleChange = e => {
     this.setState({ input: e.target.value });
@@ -11,6 +18,7 @@ class Sends extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    this.props.setValue(this.state.input);
   };
 
   render() {
@@ -23,4 +31,4 @@ class Sends extends Component {
   }
 }
 
-export default Sends;
+export default useSample(Sends);
